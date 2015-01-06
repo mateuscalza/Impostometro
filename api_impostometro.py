@@ -25,13 +25,16 @@ while True:
     valorFinal = a + seg + random.randrange(0,8+1)/10 + random.randrange(0,8+1)/100
     print (str(a) + "  <---  valor atual online")
     print (str(seg) + "  <---incremento por segundo atual online")
-    yy = locale.format("%10.2f", valorFinal, grouping=True)
-    print (yy)
 
     for i in range(10):
-   
-        print(locale.format("%10.2f", valorFinal, grouping=True))
+        valor_exibicao = locale.format("%018.2f", valorFinal, grouping=True)
+        print(valor_exibicao)
         valorFinal = valorFinal + seg + random.randrange(0,8+1)/10 + random.randrange(0,8+1)/100    
+
+        text_file = open("valor.txt", "w")
+        text_file.write(valor_exibicao)
+        text_file.close()
+
         time.sleep(1)
 
     x +=1
