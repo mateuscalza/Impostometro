@@ -115,14 +115,14 @@ def GetFontPixels(font, text, black, white):
   return Trim(ret, white)
 
 
-def Get8PixelsHigh(text, color, fit_width=False):
+def Get8PixelsHigh(text, color, fit_width=True):
   """Useful for my 8x8 pixel LED matrix from sparkfun."""
-  font = wx.Font(8, wx.SWISS, style=wx.NORMAL, weight=wx.BOLD)
-  white = ' '
+  font = wx.Font(26, wx.SWISS, style=wx.NORMAL, weight=wx.BOLD)
+  white = '0'
   width = -1
   if fit_width:
-    width = 8
-  lines = FitSize(width, 8, GetFontPixels(font, text, color, white), white)
+    width = 16
+  lines = FitSize(width, 32, GetFontPixels(font, text, color, white), white)
   return lines
 
 
@@ -268,9 +268,9 @@ if __name__ == '__main__':
   for arg in args:
     exec 'arg = u\'%s\'' % arg
     if options.matrix:
-      lines = Get8PixelsHigh(arg, 'R')
+      lines = Get8PixelsHigh(arg, '1')
     else:
-      lines = GetFontPixels(afont, arg, options.char, ' ')
+      lines = GetFontPixels(afont, arg, options.char, '0')
     if options.grid:
       line = '    '
       for col in range(len(lines[0])):
