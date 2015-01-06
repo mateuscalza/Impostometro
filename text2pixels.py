@@ -91,7 +91,7 @@ def GetFontPixels(font, text, black, white):
   """Draw the text and get the pixels."""
 
   dc = wx.MemoryDC()
-  bitmap = wx.EmptyBitmap(400, 80, -1)
+  bitmap = wx.EmptyBitmap(600, 80, -1)
   dc.SelectObject(bitmap)
   dc.SetFont(font)
   dc.SetBackground(wx.Brush('white', wx.SOLID))
