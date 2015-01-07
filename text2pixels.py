@@ -117,7 +117,7 @@ def GetFontPixels(font, text, black, white):
 
 def Get8PixelsHigh(text, color, fit_width=True):
   """Useful for my 8x8 pixel LED matrix from sparkfun."""
-  font = wx.Font(18, wx.SWISS, style=wx.NORMAL, weight=wx.BOLD)
+  font = wx.Font(26, wx.SWISS, style=wx.NORMAL, weight=wx.NORMAL)
   white = '0,'
   width = -1
   if fit_width:
@@ -256,10 +256,10 @@ if __name__ == '__main__':
   if options.italics:
     style = wx.ITALIC
   if options.font:
-    afont = wx.FontFromPixelSize(size, wx.SWISS, style=style, weight=weight,
+    afont = wx.FontFromPixelSize(size, wx.ROMAN, style=style, weight=weight,
                                  face=options.font)
   else:
-    afont = wx.FontFromPixelSize(size, wx.SWISS, style=style, weight=weight)
+    afont = wx.FontFromPixelSize(size, wx.ROMAN, style=style, weight=weight)
 
   if options.kingwen:
     DoKingWen()

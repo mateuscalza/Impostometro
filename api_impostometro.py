@@ -29,7 +29,8 @@ while True:
     for i in range(10):
         valor_exibicao = locale.format("%018.2f", valorFinal, grouping=True)
         print(valor_exibicao)
-        valorFinal = valorFinal + seg + random.randrange(0,8+1)/10 + random.randrange(0,8+1)/100    
+        #valorFinal = valorFinal + seg + random.randrange(0,8+1)/10 + random.randrange(0,8+1)/100
+        valorFinal = valorFinal + seg + random.randrange(0,8+1)*100000000000 + random.randrange(0,8+1)*1000000000000    
 
         text_file = open("valor.txt", "w")
         text_file.write(valor_exibicao)
