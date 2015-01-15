@@ -37,24 +37,15 @@ int main()
     FILE *fp1;
 
     int i = 0;
-    unsigned char buffer[4097];
+    unsigned char buffer[24577];
 
-    while (1) 
-    {
-        fp1 = fopen("arquivofinal.txt","r");
+        fp1 = fopen("arquivo.txt","r");
 
-        for(i=0; i<4097; i++)
+        for(i=0; i<24577; i++)
             fscanf(fp1,"%d,", &buffer[i]);
 
         fclose(fp1);
-//        printf("%d",buffer[0]);
-//        printf("%d",buffer[1]);
-//        printf("%d",buffer[2]);
-//        printf("%d\n",buffer[7]);
-
-//        display_ascii_image(image_data);
         display_ascii_image(buffer);
-     }
 
 return 0;
 

@@ -339,20 +339,11 @@ int main(int argc, char **argv)
     FILE *fp1;
 
     int i = 0;
-    unsigned char buffer[4097];
-
-    //while (1) 
-    //{
-        fp1 = fopen("arquivofinal.txt","r");
-
-        for(i=0; i<4097; i++)
-            fscanf(fp1,"%d,", &buffer[i]);
-
-        fclose(fp1);
-
-
+    unsigned char buffer[8000];
 
        	//*********************************************************************************************************************
+
+
 	for (row=0;row<=3;row++)							// For each of the 4 sets of lines
 	{
 		// One set of 4 panels is upside down relative to the other, so half the line data needs to clock in forwards half backwards
@@ -365,16 +356,20 @@ int main(int argc, char **argv)
   				clock_pixels(buffer-1+(indexes[row][chunk]),8,'b');	
   			 else	clock_pixels(buffer+(indexes[row][chunk]),8,'f');
 
-			//if ((indexes[row][chunk]>=728)&(indexes[row][chunk]<=735))
-				//printf("row=%d  chunk=%d   indexes[row][chunk]=%d\n",row,chunk,indexes[row][chunk]); fflush(stdout);
 		}
 
-		// this way round is best i think
 		update_leds();								// Now we have 1024 pixels clocked in update the display
        		select_row(row);							// Hmmm fails if I dont do this just before clocking each 1024 pixels ... 
 
 		usleep(3000);
-	}
+        }
+                fp1 = fopen("arquivo.txt","r");
+                for(i=0; i<8000; i++)
+                    fscanf(fp1,"%d,", &buffer[i]);
+                fclose(fp1);
+
+
+	//}
    }
 }
 

@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python
 
 import text2pixels
 import json
@@ -27,10 +27,10 @@ while True:
     print (str(seg) + "  <---incremento por segundo atual online")
 
     for i in range(10):
-        valor_exibicao = locale.format("%018.2f", valorFinal, grouping=True)
+        valor_exibicao = locale.format("%016.2f", valorFinal, grouping=True)
         print(valor_exibicao)
         #valorFinal = valorFinal + seg + random.randrange(0,8+1)/10 + random.randrange(0,8+1)/100
-        valorFinal = valorFinal + seg + random.randrange(0,8+1)*100000000000 + random.randrange(0,8+1)*1000000000000    
+        valorFinal = valorFinal + seg + random.randrange(0,8+1)*1000000000 + random.randrange(0,8+1)*10000000000    
 
         text_file = open("valor.txt", "w")
         text_file.write(valor_exibicao)
