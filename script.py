@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+import time
+
 FONTE_VIR="x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,y,y,y,y,x,x,x,x,x,x,y,y,y,y,x,x,x,x,x,x,y,y,y,y,x,x,x,x,x,x,y,y,y,x,x,x,x,x,x,y,y,y,y,x,x,x,x,x,x,y,y,y,x,x,x,x,x,x,y,y,y,y,x,x,x,x,x,y,y,y,y,x,x,x,x,x,y,y,y,y,x,x,x,x,x,x,x,y,y,x,x,x,x,x,x,"
 FONTE_PON="x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,y,y,y,x,x,x,x,x,x,x,y,y,y,y,y,x,x,x,x,x,x,y,y,y,y,y,x,x,x,x,x,x,y,y,y,y,y,x,x,x,x,x,x,x,y,y,y,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,"
 FONTE_0="x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,y,y,y,y,y,y,y,y,y,y,x,x,x,x,x,x,x,x,x,x,x,y,y,y,y,x,x,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,y,y,y,y,x,x,x,x,x,x,y,y,y,y,x,x,x,x,x,x,x,y,y,y,y,x,x,x,x,x,x,x,x,y,y,y,y,x,x,x,x,x,x,y,y,y,x,x,x,x,x,x,x,x,x,x,y,y,y,x,x,x,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,x,y,y,y,y,x,x,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,x,y,y,y,y,x,x,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,x,y,y,y,y,x,x,x,x,y,y,y,x,x,x,x,x,x,x,x,x,x,x,x,y,y,y,x,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,x,x,x,y,y,y,y,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,x,x,x,y,y,y,y,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,x,x,x,y,y,y,y,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,x,x,x,y,y,y,y,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,x,x,x,y,y,y,y,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,x,x,x,y,y,y,y,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,x,x,x,y,y,y,y,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,x,x,x,y,y,y,y,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,x,x,x,y,y,y,y,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,x,x,x,y,y,y,y,x,x,x,y,y,y,x,x,x,x,x,x,x,x,x,x,x,x,y,y,y,x,x,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,x,y,y,y,y,x,x,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,x,y,y,y,y,x,x,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,x,y,y,y,y,x,x,x,x,x,y,y,y,x,x,x,x,x,x,x,x,x,x,y,y,y,x,x,x,x,x,x,y,y,y,y,x,x,x,x,x,x,x,x,y,y,y,y,x,x,x,x,x,x,x,y,y,y,y,x,x,x,x,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,y,y,y,y,x,x,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,x,x,y,y,y,y,y,y,y,y,y,y,x,x,x,x,x,x,x,x,x,x,x,x,x,x,y,y,y,y,y,y,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,"
@@ -14,10 +16,11 @@ FONTE_8="x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,y,y,y,y,y,y,y,y,y,y
 FONTE_9="x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,y,y,y,y,y,y,y,y,y,y,y,x,x,x,x,x,x,x,x,x,x,y,y,y,y,y,x,x,x,x,y,y,y,y,x,x,x,x,x,x,x,x,y,y,y,y,x,x,x,x,x,x,x,x,y,y,y,x,x,x,x,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,x,y,y,y,x,x,x,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,x,y,y,y,x,x,x,x,x,y,y,y,x,x,x,x,x,x,x,x,x,x,x,x,y,y,y,x,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,x,x,x,y,y,y,x,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,x,x,x,y,y,y,x,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,x,x,x,y,y,y,y,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,x,x,x,y,y,y,y,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,x,x,x,y,y,y,y,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,x,x,x,y,y,y,y,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,x,x,x,y,y,y,y,x,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,x,y,y,y,y,y,x,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,x,y,y,y,y,y,x,x,x,x,y,y,y,y,x,x,x,x,x,x,x,x,y,y,y,y,y,y,x,x,x,x,x,y,y,y,y,y,x,x,x,x,y,y,y,x,y,y,y,y,x,x,x,x,x,x,y,y,y,y,y,y,y,y,y,y,x,x,y,y,y,y,x,x,x,x,x,x,x,x,y,y,y,y,y,y,x,x,x,x,y,y,y,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,y,y,y,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,y,y,y,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,y,y,y,x,x,x,x,x,x,y,y,x,x,x,x,x,x,x,x,x,x,x,y,y,y,x,x,x,x,x,x,y,y,x,x,x,x,x,x,x,x,x,x,y,y,y,x,x,x,x,x,x,x,y,y,y,x,x,x,x,x,x,x,x,y,y,y,x,x,x,x,x,x,x,x,y,y,y,y,x,x,x,x,x,y,y,y,y,x,x,x,x,x,x,x,x,x,y,y,y,y,y,y,y,y,y,y,y,y,x,x,x,x,x,x,x,x,x,x,x,x,y,y,y,y,y,y,y,y,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,"
 
 while True:
+    antes = time.time()
     abrir = open('valor.txt','r')
     valor = abrir.readline()
     linha = ""
-
+    
     for i in range(0,32):
         iter1 = valor.replace(",",FONTE_VIR[i*20:i*20+20])
         iter2 = iter1.replace(".",FONTE_PON[i*22:i*22+22])
@@ -38,3 +41,6 @@ while True:
     f = open('arquivo.txt','w')
     f.write(verFinal2)
     f.close()
+
+    parada = time.time()-antes
+    time.sleep(1-parada)
