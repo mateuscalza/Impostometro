@@ -44,3 +44,4 @@ while True:
 
     parada = time.time()-antes
     time.sleep(1-parada)
+    print parada
