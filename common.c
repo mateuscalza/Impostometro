@@ -37,11 +37,13 @@ void kick_empeg(char *ipaddress, int olist)
 
 // Font rendering code
 // Note: mplayer seems to be used 32 bits per pixel even against 24 bit displays ? Stepping is 4 bytes not 3
-#include "font_6x11.h"
+//#include "font_6x11.h"
 #define CHAR_HEIGHT  11
 #define CHAR_WIDTH   6
 #define CHAR_START   4
 #include <time.h>
+
+static unsigned char fontdata[] = { };
 void add_text(char *TEXT,char *byteperpixel_led_buffer, int width, int height, int offset_down,int offset_across, int color)
 {
     time_t      t;
