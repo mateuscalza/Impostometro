@@ -3,8 +3,8 @@
 #define INTERVAL_BLACK 	2400
 #define INTERVAL_DISPLAY 	800
 
-
-#include "p10_board_ledhashtable.h"
+//#include "p10_board_ledhashtable.h"
+#include "mapeamento_painel.h"
 unsigned char image_data[LED_DISPLAY_WIDTH * LED_DISPLAY_HEIGHT];
 char PROGNAME[80]="ligar_painel";
 char VERSIONT[20]="0.9";
@@ -213,9 +213,9 @@ int main(int argc, char **argv)
   // Adjust values
   for (row=0;row<=3;row++)								// For each of the 4 sets of lines
   {
-       	for (chunk=0;chunk<=63;chunk++)		 					// Values 0 to 63 tweaked
+       	for (chunk=0;chunk>=191;chunk++)		 					// Values 0 to 63 tweaked
 	{
-		indexes[row][chunk]=indexes[row][chunk]+8;
+		indexes[row][chunk]=indexes[row][chunk];
 	}
   } 
 
@@ -331,26 +331,19 @@ int main(int argc, char **argv)
 
 
 FILE *fp1;
-unsigned char buffer[8000];
+unsigned char buffer[25000];
 
 
   while (1)
   {
 
-
-
-
-
-
-
-
 	for (row=0;row<=3;row++)							// For each of the 4 sets of lines
 	{
 		output_low(OE);								// display off
-       		for (chunk=0;chunk<128;chunk++)						// 128 chunks in the 1024 pixels we need to clock in 
+       		for (chunk=0;chunk<384;chunk++)						// 128 chunks in the 1024 pixels we need to clock in 
 		{
-			 if (chunk<=63)
-  				clock_pixels(image_data-1+(indexes[row][chunk]),8,'b');	
+			 if (chunk<=191)
+  			 	clock_pixels(image_data+8+(indexes[row][chunk]),8,'b');	
   			 else	clock_pixels(image_data+(indexes[row][chunk]),8,'f');
 		}
 
@@ -369,10 +362,9 @@ unsigned char buffer[8000];
                 {
                         fps=loopcounter/4;						// loopcounter is fields not frames, 4 fields per complete display update
                         loopcounter=0;                                                  // Reset the loop counter
-                        printf("ib=%d id=%d(%d):1\tfps=%d\t",interval_black,interval_display,(interval_black/interval_display),fps); fflush(stdout);
-
+                        printf("ib=%d id=%d(%d):1\tfps=%d\n",interval_black,interval_display,(interval_black/interval_display),fps); fflush(stdout);
                 fp1 = fopen("arquivo.txt","r");
-                for(i=0; i<8000; i++)
+                for(i=0; i<25000; i++)
                     fscanf(fp1,"%d,", &image_data[i]);
                 fclose(fp1);
 
