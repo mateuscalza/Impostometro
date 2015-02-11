@@ -343,7 +343,7 @@ unsigned char buffer[25000];
        		for (chunk=0;chunk<384;chunk++)						// 128 chunks in the 1024 pixels we need to clock in 
 		{
 			 if (chunk<=191)
-  			 	clock_pixels(image_data+8+(indexes[row][chunk]),8,'b');	
+  			 	clock_pixels(image_data+7+(indexes[row][chunk]),8,'b');	
   			 else	clock_pixels(image_data+(indexes[row][chunk]),8,'f');
 		}
 
