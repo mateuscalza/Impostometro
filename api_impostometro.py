@@ -1,45 +1,53 @@
 #!/usr/bin/env python
 
+# -*- coding: utf-8 -*-
+
 import text2pixels
 import json
 import requests
 import time
 import random
 import sys
-
 import locale
+
+from datetime import datetime
 
 locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
 
-impostometro_dados_antigo = {u'atual':123456789,u'segundo':456789}
+dia = 0
+valor_final = 0
+incremento_por_segundo = 94747.37
+while True:
+    agora = datetime.now()
+    hoje = agora.day
+    if dia != hoje or valor_final == 0:
+        dia = hoje
+        mes = agora.month
+        ano = agora.year
+        try:
+            headers = {'X-Requested-With': 'XMLHttpRequest'}
+            url = 'https://impostometro.com.br/Contador/Brasil?dataInicial=01/01/' + str(ano) + '&dataFinal=' + str(dia) + '/' + str(mes) + '/' + str(ano)
+            print(url)
+            r = requests.get(url, headers=headers, timeout=10, verify=False)
+            if r.status_code == 200:
+	        impostometro_dados = json.loads(r.content)
+	        valor_final = float(impostometro_dados['Valor'])
+                print(str(valor_final) + ' (novo valor da API)')
+            else:
+                print("Ocorreu um erro, resposta:")
+                print(r.content)
+        except:
+            print("Ocorreu um erro")
 
-x = 1
-while True: 
-    try:
-        r = requests.get('http://api.impostometro.com.br/services/brasil', timeout=5)
-        impostometro_dados = json.loads(r.content) 
-
-    except: 
-        impostometro_dados = impostometro_dados_antigo
-
-    a = float(impostometro_dados['atual'])
-    seg = float(impostometro_dados['segundo'])
-    valorFinal = a + seg + random.randrange(0,8+1)/10 + random.randrange(0,8+1)/100
-    print (str(a) + "  <---  valor atual online")
-    print (str(seg) + "  <---incremento por segundo atual online")
-
-    for i in range(5):
-        valor_exibicao = locale.format("%016.2f", valorFinal, grouping=True)
+    if valor_final == 0:
+        valor_exibicao = "."
+        print("Ocorreu um erro, sem valor para exibir.")
+    else:
+        valor_final += incremento_por_segundo
+        valor_exibicao = locale.format("%016.2f", valor_final, grouping=True)
         print(valor_exibicao)
-        #valorFinal = valorFinal + seg + random.randrange(0,8+1)/10 + random.randrange(0,8+1)/100
-        valorFinal = valorFinal + seg + random.randrange(0,8+1)*1000000000 + random.randrange(0,8+1)*10000000000    
 
         text_file = open("valor.txt", "w")
         text_file.write(valor_exibicao)
         text_file.close()
-
-        time.sleep(1)
-
-    impostometro_dados_antigo = impostometro_dados
-    print (impostometro_dados_antigo)
-    x +=1
+    time.sleep(1)
